@@ -26,19 +26,22 @@ relationship.remove(firebase, 123, 'abc');
 
 ## API
 
-### constructor(name, path)
+### - constructor(name, path)
 Creates and returns a new relationship.
 
-- [name] Relationship name. Must include only one underscore.
-- [path] Firebase path to store relationships. Defaults to 'relationship'. Must not contain leading or trailing forward slashes.
+- **[name]** Relationship name. Must include only one underscore.
+- **[path]** Firebase path to store relationships. Defaults to 'relationship'. Must not contain leading or trailing forward slashes.
 
-### join(instance, leftId, rightId, ?value) : Promise
+
+### - join(instance, leftId, rightId, value?) : Promise
 
 Creates a two way relationship between two IDs. The 4th param is an optional value to store with the relationship (defaults to true).
 
-### remove(instance, leftId, rightId) : Promise
+
+### - remove(instance, leftId, rightId) : Promise
 
 Removes a two way relationship between two IDs.
+
 
 ## Magic Methods
 
