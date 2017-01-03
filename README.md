@@ -32,17 +32,17 @@ Creates and returns a new relationship.
 - [name] Relationship name. Must include only one underscore.
 - [path] Firebase path to store relationships. Defaults to 'relationship'. Must not contain leading or trailing forward slashes.
 
-### join(instance, leftId, rightId, ?value)
+### join(instance, leftId, rightId, ?value) : Promise
 
 Creates a two way relationship between two IDs. The 4th param is an optional value to store with the relationship (defaults to true).
 
-### remove(instance, leftId, rightId)
+### remove(instance, leftId, rightId) : Promise
 
 Removes a two way relationship between two IDs.
 
 ## Magic Methods
 
-When a new relationship instance is created, two magic methods are available for easy relationship querying. For example, with a "category_product" relationship:
+When a new relationship instance is created, four magic methods are available for easy relationship querying. For example, with a "category_product" relationship:
 
 ```javascript
 // Get products for a category
@@ -54,6 +54,11 @@ relationship.getCategoryProducts(firebase, categoryId).then((snapshot) => {
 relationship.getProductCategories(firebase, productId).then((snapshot) => {
   console.log('Categories', snapshot.val());
 });
+
+// you can also get the internal refs for a join
+const refA = relationship.getCategoryProductsRef;
+const refB = relationship.getProductCategoriesRef;
+// ... do a custom query ?
 ```
 
 > Each relationship name is pluralized.
