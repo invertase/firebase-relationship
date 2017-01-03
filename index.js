@@ -36,6 +36,10 @@ class Relationship {
     // create stub methods i.e getUserMatches & getMatchUsers
     this[`get${this._relLeft}`] = this._getLeftChildren.bind(this);
     this[`get${this._relRight}`] = this._getRightChildren.bind(this);
+    
+    // create stub get ref methods i.e getUserMatchesRef & getMatchUsersRef
+    this[`get${this._relLeft}Ref`] = this._getLeftChildrenRef.bind(this);
+    this[`get${this._relRight}Ref`] = this._getRightChildrenRef.bind(this);
   }
 
   /**
@@ -48,8 +52,10 @@ class Relationship {
   join(firebase, aId, bId, value = true) {
     const db = firebase.database();
     const _value = value || Date.now();
-    db.ref(`${this._leftRef}/${aId}/${bId}`).set(_value);
-    db.ref(`${this._rightRef}/${bId}/${aId}`).set(_value);
+    return Promise.all([
+      db.ref(`${this._leftRef}/${aId}/${bId}`).set(_value),
+      db.ref(`${this._rightRef}/${bId}/${aId}`).set(_value)
+    ]);
   }
 
   /**
@@ -60,8 +66,10 @@ class Relationship {
    */
   remove(firebase, aId, bId) {
     const db = firebase.database();
-    db.ref(`${this._leftRef}/${aId}/${bId}`).remove();
-    db.ref(`${this._rightRef}/${bId}/${aId}`).remove();
+    return Promise.all([
+      db.ref(`${this._leftRef}/${aId}/${bId}`).remove(),
+      db.ref(`${this._rightRef}/${bId}/${aId}`).remove()
+    ]);
   }
 
   /**
@@ -72,10 +80,7 @@ class Relationship {
    * @private
    */
   _getLeftChildren(firebase, aId) {
-    const db = firebase.database();
-    return new Promise((resolve) => {
-      db.ref(`${this._leftRef}/${aId}`).once('value', resolve, this);
-    });
+    return this._getLeftChildrenRef(firebase, aId).once('value');
   }
 
   /**
@@ -86,10 +91,29 @@ class Relationship {
    * @private
    */
   _getRightChildren(firebase, bId) {
-    const db = firebase.database();
-    return new Promise((resolve) => {
-      db.ref(`${this._rightRef}/${bId}`).once('value', resolve, this);
-    });
+    return this._getRightChildrenRef(firebase, bId).once('value');
+  }
+  
+  /**
+   *
+   * @param firebase
+   * @param aId
+   * @returns {Promise}
+   * @private
+   */
+  _getLeftChildrenRef(firebase, aId) {
+    return firebase.database().ref(`${this._leftRef}/${aId}`);
+  }
+
+  /**
+   *
+   * @param firebase
+   * @param bId
+   * @returns {Promise}
+   * @private
+   */
+  _getRightChildrenRef(firebase, bId) {
+    return firebase.database().ref(`${this._rightRef}/${bId}`);
   }
 }
 
