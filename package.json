@@ -1,0 +1,28 @@
+{
+  "name": "firebase-relationship",
+  "version": "1.0.0",
+  "description": "A Firebase relationship manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teamfa/firebase-relationship.git"
+  },
+  "keywords": [
+    "firebase",
+    "javascript",
+    "relationship",
+    "firebase join"
+  ],
+  "author": "TeamFA",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teamfa/firebase-relationship/issues"
+  },
+  "homepage": "https://github.com/teamfa/firebase-relationship#readme",
+  "dependencies": {
+    "pluralize": "^3.1.0"
+  }
+}
