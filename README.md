@@ -58,4 +58,5 @@ relationship.getProductCategories(firebase, productId).then((snapshot) => {
 
 > Each relationship name is pluralized.
 
+[npm-image]: https://img.shields.io/npm/v/firebase-relationship.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/firebase-relationship
