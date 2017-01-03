@@ -32,11 +32,11 @@ Creates and returns a new relationship.
 - [name] Relationship name. Must include only one underscore.
 - [path] Firebase path to store relationships. Defaults to 'relationship'. Must not contain leading or trailing forward slashes.
 
-### join(<Firebase Instance>, leftId, rightId, ?value)
+### join(instance, leftId, rightId, ?value)
 
 Creates a two way relationship between two IDs. The 4th param is an optional value to store with the relationship (defaults to true).
 
-### remove(<Firebase Instance>, leftId, rightId)
+### remove(instance, leftId, rightId)
 
 Removes a two way relationship between two IDs.
 
