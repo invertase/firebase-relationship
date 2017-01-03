@@ -1,6 +1,6 @@
 {
   "name": "firebase-relationship",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Firebase relationship manager",
   "main": "index.js",
   "scripts": {
