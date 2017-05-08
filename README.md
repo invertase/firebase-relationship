@@ -1,5 +1,6 @@
 # Firebase Relationship
 [![NPM version][npm-image]][npm-url]
+[![Donate](https://img.shields.io/badge/Donate-Patreon-green.svg)](https://www.patreon.com/invertase)
 
 A promise based helper to manage relationships in your Firebase Realtime Database.
 
